@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="0" max="200" value="10" data-sizing="px" data-name="exemple" data-cool="poop">  <!-- data attributes is written "data-" + what you want -->
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px"> <!-- data sizing gives the format -->
+
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+
+  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+
+  <style>
+      /* we declare the variables we'll use on a element, here the "root" element" the "--" is equivalent to the $. It's to use variables*/
+    :root {
+        --base: #ffc600;
+        --spacing: 10px;
+        --blur: 10px;
+    }
+    
+      /* We then use these variables in the different elements using var() and passing it the given variable */
+    img {
+        padding: var(--spacing);
+        background: var(--base);
+        filter: blur(var(--blur));
+    }
+
+    .hl {
+        color: var(--base);
+    }
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+    body {
+      text-align: center;
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+    .controls {
+      margin-bottom: 50px;
+    }
+    input {
+      width:100px;
+    }
+  </style>
+
+  <script>
+    const inputs = document.querySelectorAll('.controls input');  // Good to know, this outputs a NodeList (looks like an array), which prototype has less methods than a typical array
+    
+
+    function handleUpdate() {
+        const suffix = this.dataset.sizing || '';
+        console.log(this.dataset);      //dataset is an object that'll contain all the data attributes of the given element
+        console.log(this.value);
+        console.log(this.name);
+        document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    
+    //inputs.forEach(input => input.addEventListener('mousemove', handleUpdate)); //interesting, this captures when the mouse hoovers around
+  
+  </script>
+
+</body>
+</html>
