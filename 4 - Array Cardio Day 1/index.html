@@ -103,14 +103,14 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
     
-    const transportation = data.reduce(function(obj, item){
-        if(!obj[item]) {
-            obj[item] = 0
+    const transportation = data.reduce(function(obj, item){  //power of reduce is that it's looping over each element of the array
+        if(!obj[item]) {        // checks if obj has the given transportation item as a property
+            obj[item] = 0       // if no, creates it and initialize it at 0
         }
-        obj[item]++
+        obj[item]++             // increments
         return obj;
-    }, {})
-
+    }, {});    // Second parameter defines an empty object
+    console.log(transportation);
   
   </script>
 </body>
