@@ -1,8 +1,5 @@
 # Javascript-30-vanilla-Wes-Bos-
 
-In this repository you'll find the finished JS apps made during the #Javascript30. It's a 30 days online challenge (https://javascript30.com/) made by Wes Bos that consists in building a Javascript "thing" per day.
+30 days challenge by Wes Bos(https://javascript30.com/) consisting in building "30 things in 30 days with 30 tutorials" using vanilla Javascript.
 
-To give a bit of context and help my fellow beginners. I started learning Node.js few months ago and I plan to get some knowledge in front JS frameworks (VueJs, React). So this class is a sort of introduction to put my hands into vanilla JS before starting to use frameworks. What I want is to better understand how frameworks work (bit of poetry never hurts) and why they are useful.
-That's why in every session you'll find some short and personal comments on stuff I find interesting and I want to remember :).
-
-Started June the 5th 2017, let's see what we'll have by the end of it!
+Nice and original stuff to build that really helps understand how javascript client-side works under the hood.
