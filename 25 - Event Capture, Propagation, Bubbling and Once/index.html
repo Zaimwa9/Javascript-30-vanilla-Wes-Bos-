@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Understanding JavaScript's Capture</title>
+</head>
+<body class="bod">
+
+  <div class="one">
+    <div class="two">
+      <div class="three">
+      </div>
+    </div>
+  </div>
+
+<style>
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after { box-sizing: inherit; }
+  div {
+    width:100%;
+    padding:100px;
+  }
+  .one {
+    background: thistle;
+  }
+  .two {
+    background:mistyrose;
+  }
+  .three {
+    background:coral;
+  }
+</style>
+
+<button></button>
+<script>
+
+    const divs = document.querySelectorAll('div');
+
+    function logText(e) {
+        // e.stopPropagation(); // This stops bubbling the event and prevent triggering the event on the way up. It follows the "capture true/false" direction
+        console.log(this.classList.value)
+    }
+
+    document.body.addEventListener('click', logText) // Same as below because the divs are nested inside the body
+
+    divs.forEach(div => div.addEventListener('click', logText, {
+        capture: true
+        // ,once: true   // Once makes the event trigger only ONCE until next refresh ! no matter what
+        }))  // Clicking on the 3rd child we receive a log for each parent (three, two, one) because it is wrapped inside the two others
+    // That is called "bubbling"
+    // The browser will first do a capture that follows a top to bottom flow. When we clicked on "three" the browser dived into three:
+    // It goes this click was on bod => one => two => three and not the other way around
+    // At this stage the event is not fired yet, it just "captures" where the click was and stored it.
+    // Then it bubbled the event and fires it the other way around: three => two => one => bod
+
+    // The object "capture: true" is a third parameter to fire the event along the capture
+
+
+</script>
+</body>
+</html>
