@@ -42,17 +42,18 @@
       // console.log(voices);
       voicesDropdown.innerHTML = voices
       //.filter(voice => voice.lang.includes('en'))     // to filter on a specific language
-        .map(voice => `<option value ="${voice.name}>${voice.name} (${voice.lang}) </option>`)
+        .map(voice => `<option value="${voice.name}">${voice.name} (${voice.lang})</option>`)
         .join('');
   }
 
   function setVoice() {
       msg.voice = voices.find(voice => voice.name === this.value);  // This is gonna loop over every voice from the API array to get the OBJECT corresponding to the user's choice
+      console.log(msg.voice)
   }
 
   function toggle(startOver = true) {
       speechSynthesis.cancel()    // This stops the bot from speaking when toggling to another voice
-      if(startOver){
+      if(startOver) {
         speechSynthesis.speak(msg)
       }
   }
@@ -62,9 +63,8 @@
       msg[this.name] = this.value;
       toggle();
   }
-
-  voicesDropdown.addEventListener('change', setVoice);
   speechSynthesis.addEventListener('voiceschanged', populateVoices);
+  voicesDropdown.addEventListener('change', setVoice);
   options.forEach(option => option.addEventListener('change', setOption));
   speakButton.addEventListener('click', toggle);
   // stopButton.addEventListener('click', toggle.bind(null,false)); this two lines show how to pass inputs to functions 
