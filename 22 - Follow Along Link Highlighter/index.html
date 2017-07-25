@@ -33,7 +33,7 @@
     highlight.classList.add('highlight');
     document.body.append(highlight);
 
-    function higlightLink() {
+    function highlightLink() {
         // console.log(this);
         const linkCoords = this.getBoundingClientRect();
         // console.log(linkCoords); this gives us all the coordinates information of the selected element
@@ -46,7 +46,7 @@
         
         highlight.style.width = `${coords.width}px`;
         highlight.style.height = `${coords.height}px`;
-        highlight.style.transform = `translate(${coords.left}px, ${linkCoords.top}px)`
+        highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`
     }
 
 
